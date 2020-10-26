@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+
+{% block content %}
+	<h2> Welcome to the Flask blog </h2>
+	<p> <a href="{{ url_for('logout') }}"> Log out </a></p>
+	<br/>
+	<br/>
+	<h3>Posts: </h3>
+	{% for post in posts %}
+	<strong>Title: </strong> {{ post.title }} <br/>
+	<strong>Post: </strong> {{ post.post }} <br/>
+	<br/>
+	{% endfor %}
+
+	<br/>
+	<form action="/add" method="post" accept-charset="utf-8">
+		<div>
+			<label for="title">Title:</label>
+			<input type="text" id="title" name="title" value="{{request.form.title}}">
+		</div>
+
+		<div>
+			<label for="post">Post:</label>
+			<input type="text" id="post" name="post" value="{{request.form.post}}">
+		</div>
+
+		<div>
+			<button type="Submit"> Post </button>
+		</div>
+	</form>
+{% endblock %}
